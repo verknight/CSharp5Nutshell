@@ -35,7 +35,7 @@ namespace CSharp5Nutshell
         void X();
     }
 
-    public class BaseContraint<T> where T : BaseClass { }
+    public class BaseContraint<T> : DerivedClass where T : BaseClass { }
     public class InterfaceContraint<T> where T : TempInterFace { }
     public class ParameterLessContraint<T> where T : new() { }
     public class NakedTypeContraint<T, U> where U : T { }
@@ -47,10 +47,15 @@ namespace CSharp5Nutshell
         {
 
         }
-        public T Max<T>(T a, T b) where T : IComparable<T>
+        public static T Max<T>(T a, T b) where T : IComparable<T>
         {
             return a.CompareTo(b) > 0 ? a : b;    
         }
+    }
+
+    public class Stack<T>
+    {
+        
     }
     class Program : RichTextBox
     {   
@@ -58,7 +63,9 @@ namespace CSharp5Nutshell
         {
             BaseContraint<BaseClass> tmp = new BaseContraint<BaseClass>();
             InterfaceContraint<NewClass> tmp1 = new InterfaceContraint<NewClass>();
-            
+            NakedTypeContraint<BaseClass, BaseContraint<DerivedClass>> tmp2 = new NakedTypeContraint<BaseClass, BaseContraint<DerivedClass>>();
+            //Console.WriteLine(NewClass.Max(10,100));
+
             Console.ReadLine();   
         }   
     }
